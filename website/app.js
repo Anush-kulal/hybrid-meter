@@ -1,6 +1,5 @@
 const cfg = window.HYBRID_METER_CONFIG || {};
 const API_URL = cfg.apiUrl || "";
-const REFRESH_MS = cfg.refreshMs || 5000;
 
 const demoMeters = [
   { meter_id: "MTR001", source: "NODE01", voltage: 234.2, current: 3.41, power: 798.62, frequency: 49.6, energy: 129.7, sequence: 470, hops: 0, timestamp: new Date().toISOString() },
@@ -45,7 +44,6 @@ async function loadTelemetry() {
   } catch (error) {
     state.connected = false;
     state.error = error.message || "Unable to reach telemetry API";
-    // Keep the most recent readings on screen rather than blanking the dashboard.
   } finally {
     state.loading = false;
     render();
@@ -105,4 +103,3 @@ function saveRate() { const v = Number(document.getElementById('rateInput').valu
 window.changeRole = changeRole; window.changeHouse = changeHouse; window.saveRate = saveRate; window.loadTelemetry = loadTelemetry;
 render();
 loadTelemetry();
-setInterval(loadTelemetry, REFRESH_MS);
