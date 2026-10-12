@@ -1,0 +1,15 @@
+[Unit]
+Description=Hybrid Smart Meter Gateway
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=hybridmesh
+WorkingDirectory=/home/hybridmesh/pendrive_data/FEDORA-WS-L/aws_major
+ExecStart=/home/hybridmesh/hybridmesh-env/bin/python -u /home/hybridmesh/pendrive_data/FEDORA-WS-L/aws_major/gateway_cloud.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
